@@ -1,4 +1,4 @@
-# tail-f.js
+# tail -f.js
 
 ### Open-Source Website Analytics Tracker  
 
