@@ -1,0 +1,24 @@
+{
+  "name": "@tail-f/express",
+  "description": "tail -f express middleware",
+  "license": "MIT",
+  "author": "RelevantEdge (https://www.relevant-edge.com)",
+  "homepage": "https://github.com/relevantedge/tail-f",
+  "scripts": {
+    "build": "rollup --config ../../../build/rollup.mjs",
+    "build:watch": "ts-node-dev --respawn ./src/index.ts"
+  },
+  "dependencies": {
+    "@tail-f/engine": "workspace:*",
+    "@tail-f/types": "workspace:*",
+    "@types/express": "^4.17.17",
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^10.0.0",
+    "express": "^4.18.2",
+    "jsonschema": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}

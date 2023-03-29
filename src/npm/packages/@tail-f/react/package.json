@@ -1,0 +1,16 @@
+{
+  "name": "@tail-f/react",
+  "description": "tail -f preact/react bindings",
+  "scripts": {
+    "build": "rollup --config ../../../build/rollup.mjs",
+    "build:watch": "pnpm run build -w"
+  },
+  "dependencies": {
+    "@tail-f/types": "workspace:*",
+    "@tail-f/client": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@types/react": "^18.0.28"
+  }
+}

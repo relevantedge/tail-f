@@ -1,0 +1,15 @@
+{
+  "name": "@tail-f/types",
+  "description": "~$ tail -f event types",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "node ../../../build/export-schema.mjs && rollup  --config ../../../build/rollup.mjs",
+    "build:watch": "nodemon --watch src --watch ../../../build/export-schema.mjs --ext ts --exec \"pnpm run build\"",
+    "doc": "typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "^0.23.25",
+    "typedoc-plugin-expand-object-like-types": "^0.1.1",
+    "typedoc-plugin-markdown": "^3.14.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "module": "ESNext",
+    "strictNullChecks": true,
+    "noErrorTruncation": true,
+    "moduleResolution": "node",
+    "preserveConstEnums": false,
+    "allowSyntheticDefaultImports": true,
+    "stripInternal": true,
+    "paths": {
+      "@tail-f/types": ["./packages/@tail-f/types/src"],
+      "@tail-f/types/schema": ["./packages/@tail-f/types/src/schema"],
+      "@tail-f/engine": ["./packages/@tail-f/engine/src"],
+      "@tail-f/engine/standalone": [
+        "./packages/@tail-f/engine/src/index.external"
+      ],
+      "@tail-f/engine/native": ["./packages/@tail-f/engine/src/native.pkg"],
+      "@tail-f/react": ["./packages/@tail-f/react/src"],
+      "@tail-f/client": ["./packages/@tail-f/client/src"],
+      "@tail-f/client/external": ["./packages/@tail-f/client/src/external.pkg"],
+      "@tail-f/client/script": ["./packages/@tail-f/client/src/script.pkg"]
+    }
+  }
+}

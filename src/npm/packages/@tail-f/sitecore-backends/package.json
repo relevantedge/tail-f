@@ -1,0 +1,22 @@
+{
+  "name": "@tail-f/sitecore-backends",
+  "description": "~$ tail -f server engine (@tail-f/server/external can be used directly from an external V8 engine without nodejs. This is how e.g. the .NET interop works).",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "author": "RelevantEdge (https://www.relevant-edge.com)",
+  "homepage": "https://github.com/relevantedge/tail-f",
+  "scripts": {
+    "build": "rollup --config ../../../build/rollup.mjs",
+    "build:watch": "pnpm run build -w"
+  },
+  "dependencies": {
+    "@maxmind/geoip2-node": "^3.5.0",
+    "@tail-f/engine": "workspace:*",
+    "@tail-f/types": "workspace:*",
+    "@types/node": "^18.13.0",
+    "base64-arraybuffer": "^1.0.2",
+    "jsonschema": "^1.4.1",
+    "maxmind": "^4.3.8",
+    "memfs": "^3.4.13"
+  }
+}

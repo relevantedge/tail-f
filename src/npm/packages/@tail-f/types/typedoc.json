@@ -1,0 +1,7 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src"],
+  "plugin": [],
+  "sort": "source-order",
+  "out": "doc"
+}

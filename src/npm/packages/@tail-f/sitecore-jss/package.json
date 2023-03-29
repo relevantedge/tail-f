@@ -1,0 +1,20 @@
+{
+  "name": "@tail-f/sitecore-jss",
+  "description": "tail -f preact/react bindings",
+  "scripts": {
+    "build": "rollup --config ../../../build/rollup.mjs",
+    "build:watch": "pnpm run build -w"
+  },
+  "dependencies": {
+    "@sitecore-jss/sitecore-jss": "^21.0.7",
+    "@sitecore-jss/sitecore-jss-nextjs": "^21.0.7",
+    "@tail-f/react": "workspace:*",
+    "@tail-f/types": "workspace:*",
+    "@tail-f/client": "workspace:*",
+    "@types/react": "^18.0.28"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "next": ">=12.1.0"
+  }
+}
