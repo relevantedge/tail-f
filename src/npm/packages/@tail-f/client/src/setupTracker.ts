@@ -1,4 +1,4 @@
-import type { TrackerEvent } from "@tail-f/types";
+import { isConsentEvent, TrackerEvent } from "@tail-f/types";
 import { isTrackerEvent } from "@tail-f/types";
 import type {
   Listener,
@@ -261,6 +261,13 @@ export const setupTracker = (init: TrackerCommand[] = []): Tracker => {
                 insertArgs = F;
                 if (isTrackerEvent(command)) {
                   command.timestamp ??= now();
+                  if (isConsentEvent(command)) {
+                    splice(mainArgs, currentArg + 1, 0, [
+                      {
+                        set: { consent: command.nonEssentialTracking },
+                      },
+                    ]);
+                  }
 
                   insertArgs = T;
                   let skip = F;

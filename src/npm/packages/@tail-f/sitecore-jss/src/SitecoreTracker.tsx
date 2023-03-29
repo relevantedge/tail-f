@@ -4,7 +4,9 @@ import {
   PlaceholdersData,
   SitecoreContext,
 } from "@sitecore-jss/sitecore-jss-nextjs";
-import type { Tracker as TrackerType } from "@tail-f/client/external";
+import { config, Tracker as TrackerType } from "@tail-f/client/external";
+config.vars = "?usr";
+
 import {
   Tracker,
   useTrackerState as useReactTrackerState,

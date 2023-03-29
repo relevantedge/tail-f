@@ -4,4 +4,5 @@ export type ReservedVariables = {
   view: View | null;
   tags: string[];
   rendered: boolean;
+  consent: boolean;
 };

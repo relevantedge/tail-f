@@ -1,5 +1,5 @@
 import clientScript from "@tail-f/client/script";
-import { isTrackerEvent, TrackerEvent } from "@tail-f/types";
+import { isConsentEvent, TrackerEvent } from "@tail-f/types";
 import {
   ClientScript,
   CookieMonster,
@@ -108,7 +108,16 @@ export class RequestHandler {
     let parsed = this._parser.parseAndValidate(payload as any);
 
     const sourceIndices = new Map<{}, number>();
-    parsed.forEach((item, i) => sourceIndices.set(item, i));
+    parsed.forEach((item, i) => {
+      if (!isValidationError(item) && isConsentEvent(item)) {
+        tracker.cookies.set(CookieMonster.NON_ESSENTIAL_CONSENT, {
+          type: "identifier",
+          essential: true,
+          value: item.nonEssentialTracking === true ? "yes" : "no",
+        });
+      }
+      sourceIndices.set(item, i);
+    });
 
     for (const ext of this._extensions) {
       if (!ext.update) continue;
@@ -283,7 +292,10 @@ export class RequestHandler {
                         status: 200,
                         content: {
                           type: "application/json",
-                          data: JSON.stringify(tracker.variables.toJSON()),
+                          data: JSON.stringify({
+                            ...tracker.variables.toJSON(),
+                            consent: tracker.consent,
+                          }),
                         },
                         headers: {
                           "cache-control": [

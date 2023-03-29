@@ -50,6 +50,11 @@ export class Tracker {
   public readonly referrer: string | null;
   public readonly state: ValueCollection<string, any>;
   public readonly variables: ValueCollection<string, any>;
+  public get consent() {
+    return (
+      this.cookies.get(CookieMonster.NON_ESSENTIAL_CONSENT)?.value === "yes"
+    );
+  }
 
   public view: View;
 

@@ -10,3 +10,4 @@ export * from "./ViewEvent";
 export * from "./HeartBeatEvent";
 export * from "./ClientLocationEvent";
 export * from "./AnchorEvent";
+export * from "./ConsentEvent";

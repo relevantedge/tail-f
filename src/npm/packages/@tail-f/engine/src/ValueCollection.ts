@@ -87,7 +87,7 @@ export class ValueCollection<Key, Value extends Source, Source = Value>
     this._comparer =
       compare ?? ((previous, current) => eq(previous, current, true));
 
-    forEach(values, ([key, source]) => this.set(key, source));
+    forEach(values, (kv) => kv && this.set(kv[0], kv[1]));
   }
 
   public get changes() {

@@ -62,6 +62,8 @@ export class CookieMonster {
 
   private static _instance: CookieMonster | undefined;
 
+  public static readonly NON_ESSENTIAL_CONSENT = "NON_ESSENTIAL_CONSENT";
+
   private constructor(config: CookieConfiguration) {
     this._config = config;
     if (config.encryptionKey) {
@@ -109,9 +111,13 @@ export class CookieMonster {
 
     const cookieHeaders: string[] = [];
 
+    let nonEssentialConsent = false;
     forEach(cookies, ([key, cookie]) => {
       if (!cookie.value) return;
       if (isManagedCookie(cookie)) {
+        if (cookie.name == CookieMonster.NON_ESSENTIAL_CONSENT) {
+          nonEssentialConsent = cookie.value === "yes";
+        }
         (cookie.type === "identifier" ? identifierValues : sessionValues)[
           +cookie.essential
         ][key] = cookie.value;
@@ -120,19 +126,26 @@ export class CookieMonster {
       }
     });
 
-    for (const { name, values, session } of [
-      { name: this._cookieNames.identifiers, values: identifierValues[0] },
+    for (const { name, values, essential, session } of [
+      {
+        name: this._cookieNames.identifiers,
+        essential: false,
+        values: identifierValues[0],
+      },
       {
         name: this._cookieNames.essentialIdentifiers,
+        essential: true,
         values: identifierValues[1],
       },
       {
         name: this._cookieNames.session,
         values: sessionValues[0],
+        essential: false,
         session: true,
       },
       {
         name: this._cookieNames.essentialSession,
+        essential: true,
         values: sessionValues[1],
         session: true,
       },
@@ -142,11 +155,13 @@ export class CookieMonster {
           this._getHeaderValue({
             type: "other",
             name,
-            value: this._encrypt(values),
+            value: this._encrypt(
+              !nonEssentialConsent && !essential ? null : values
+            ),
             fromRequest: false,
             http: true,
             sameSite: "None",
-            maxAge: 34560000,
+            maxAge: session ? undefined : 34560000,
           })
         );
       }
@@ -224,6 +239,7 @@ export class CookieMonster {
   private _decrypt(encrypted: string) {
     return decodeURIComponent(this._decryptString(encrypted))
       .split(";")
+      .filter((value) => value)
       .map((parts) => parts.split("="))
       .map(([key, value]) => [
         decodeURIComponent(key),
@@ -245,14 +261,16 @@ export class CookieMonster {
     )}${decipher.final("utf8")}`;
   }
 
-  private _encrypt(source: Record<string, string>) {
+  private _encrypt(source: Record<string, string> | null) {
     return encodeURIComponent(
       this._encryptString(
-        map(
-          entries(source),
-          ([key, value]) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-        ).join(";")
+        !source
+          ? null
+          : map(
+              entries(source),
+              ([key, value]) =>
+                `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+            ).join(";")
       )
     );
   }
@@ -274,7 +292,9 @@ export class CookieMonster {
       throw new Error("Request cookies cannot be written to the response.");
     }
     const parts = [
-      `${encodeURIComponent(cookie.name)}=${encodeURIComponent(cookie.value)}`,
+      `${encodeURIComponent(cookie.name)}=${
+        cookie.value ? encodeURIComponent(cookie.value) : ""
+      }`,
       "Path=/",
       "Secure",
     ];
@@ -282,7 +302,7 @@ export class CookieMonster {
       parts.push("HttpOnly");
     }
     if (cookie.maxAge !== void 0) {
-      parts.push(`Max-Age=${cookie.maxAge}`);
+      parts.push(`Max-Age=${cookie.value ? cookie.maxAge : 0}`);
     }
     parts.push(`SameSite=${cookie.sameSite}`);
     return parts.join("; ");

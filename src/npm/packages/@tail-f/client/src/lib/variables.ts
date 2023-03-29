@@ -58,6 +58,7 @@ export const variables = (): Variables => {
           push(queue, callback);
 
           timeout &&
+            timeout > 0 &&
             setTimeout(
               () =>
                 !triggered && // The callback has not yet been triggered, timeout happened.

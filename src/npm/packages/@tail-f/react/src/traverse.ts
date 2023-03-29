@@ -1,7 +1,5 @@
 import React, { isValidElement, ReactNode } from "react";
 
-const stateKey = "__traverse_state";
-
 let currentHookState: any = null;
 
 export function useTraverseState<T>(): T | undefined {
