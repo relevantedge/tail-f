@@ -1,6 +1,6 @@
-# tail -f.js
+<img src="https://raw.githubusercontent.com/relevantedge/tail-f/main/docs/logo-small.png" width=400 alt="tail-f.js logo">
 
-### Open-Source Website Analytics Tracker  
+### Open-source website analytics tracker  
 
 To meet requirements for collecting granular clickstream data with minimal effort, this is a modular, open-source website tracker. Simple to implement and GDRP friendly, the tracker reduces manual set up by automatically tracking website clicks as well as select web-session data. 
 
