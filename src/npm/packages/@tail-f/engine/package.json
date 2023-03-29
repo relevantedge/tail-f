@@ -2,6 +2,7 @@
   "name": "@tail-f/engine",
   "description": "~$ tail -f server engine (@tail-f/server/external can be used directly from an external V8 engine without nodejs. This is how e.g. the .NET interop works).",
   "license": "MIT",
+  "version": "0.8.782",
   "main": "src/index.ts",
   "author": "RelevantEdge (https://www.relevant-edge.com)",
   "homepage": "https://github.com/relevantedge/tail-f",
@@ -21,5 +22,8 @@
   },
   "devDependencies": {
     "mmdb-lib": "^2.0.2"
+  },
+  "publishConfig": {
+    "directory": "dist"
   }
 }

@@ -119,6 +119,7 @@ importers:
       '@tail-f/types': workspace:*
     dependencies:
       '@tail-f/types': link:../types
+    publishDirectory: dist
 
   packages/@tail-f/engine:
     specifiers:
@@ -142,6 +143,7 @@ importers:
       memfs: 3.4.13
     devDependencies:
       mmdb-lib: 2.0.2
+    publishDirectory: dist
 
   packages/@tail-f/express:
     specifiers:
@@ -177,26 +179,16 @@ importers:
       '@tail-f/types': link:../types
       '@types/react': 18.0.28
       react: 18.2.0
+    publishDirectory: dist
 
   packages/@tail-f/sitecore-backends:
     specifiers:
-      '@maxmind/geoip2-node': ^3.5.0
       '@tail-f/engine': workspace:*
       '@tail-f/types': workspace:*
-      '@types/node': ^18.13.0
-      base64-arraybuffer: ^1.0.2
-      jsonschema: ^1.4.1
-      maxmind: ^4.3.8
-      memfs: ^3.4.13
     dependencies:
-      '@maxmind/geoip2-node': 3.5.0
       '@tail-f/engine': link:../engine
       '@tail-f/types': link:../types
-      '@types/node': 18.13.0
-      base64-arraybuffer: 1.0.2
-      jsonschema: 1.4.1
-      maxmind: 4.3.8
-      memfs: 3.4.13
+    publishDirectory: dist
 
   packages/@tail-f/sitecore-jss:
     specifiers:
@@ -214,9 +206,11 @@ importers:
       '@tail-f/client': link:../client
       '@tail-f/react': link:../react
       '@tail-f/types': link:../types
-      '@types/react': 18.0.28
       next: 12.3.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
+    devDependencies:
+      '@types/react': 18.0.28
+    publishDirectory: dist
 
   packages/@tail-f/types:
     specifiers:
@@ -227,6 +221,7 @@ importers:
       typedoc: 0.23.25_typescript@4.9.5
       typedoc-plugin-expand-object-like-types: 0.1.1_typedoc@0.23.25
       typedoc-plugin-markdown: 3.14.0_typedoc@0.23.25
+    publishDirectory: dist
 
 packages:
 
@@ -982,7 +977,6 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: false
 
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -998,7 +992,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
-    dev: false
 
   /@types/resolve/1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -1006,7 +999,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: false
 
   /@types/serve-static/1.15.0:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
@@ -1594,7 +1586,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

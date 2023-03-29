@@ -2,6 +2,7 @@
   "name": "@tail-f/express",
   "description": "tail -f express middleware",
   "license": "MIT",
+  "version": "0.8.782",
   "author": "RelevantEdge (https://www.relevant-edge.com)",
   "homepage": "https://github.com/relevantedge/tail-f",
   "scripts": {

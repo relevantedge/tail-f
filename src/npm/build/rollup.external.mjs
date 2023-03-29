@@ -19,13 +19,13 @@ export async function getExternalBundles() {
   const pkg = await env();
 
   const v8 = [
-    `${pkg.workspace}/dist/@tail-f/${pkg.name}/v8`,
+    `${pkg.path}/dist/v8`,
     ...getProjects(false).map(({ path }) => join(path, pkg.name)),
     ...getProjects(true).map(({ path }) => join(path, pkg.name, "v8")),
   ];
 
   const standalone = [
-    join(pkg.workspace, "dist/@tail-f", pkg.name, "standalone"),
+    join(pkg.path, "dist", "standalone"),
     ...getProjects(true).flatMap(({ path }) => [
       join(path, pkg.name, "standalone"),
     ]),

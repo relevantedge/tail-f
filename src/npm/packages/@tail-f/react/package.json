@@ -1,6 +1,8 @@
 {
   "name": "@tail-f/react",
   "description": "tail -f preact/react bindings",
+  "license": "MIT",
+  "version": "0.8.782",
   "scripts": {
     "build": "rollup --config ../../../build/rollup.mjs",
     "build:watch": "pnpm run build -w"
@@ -12,5 +14,8 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "@types/react": "^18.0.28"
+  },
+  "publishConfig": {
+    "directory": "dist"
   }
 }

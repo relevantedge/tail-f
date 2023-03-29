@@ -8,7 +8,7 @@ import { applyDefaultConfiguration, env, getProjects } from "./shared.mjs";
 const pkg = await env(true);
 
 const destinations = [
-  `${pkg.workspace}/dist/@tail-f/${pkg.name}/dist/index.min`,
+  `${pkg.path}/dist/dist/index.min`,
   ...getProjects().map(({ dataPath }) => `${dataPath}/tail-f`),
 ];
 

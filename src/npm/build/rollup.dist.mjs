@@ -33,7 +33,7 @@ export const getDistBundles = async (variables = {}, subPackages = {}) => {
   await addSubPackages(`src`);
 
   const destinations = [
-    join(pkg.workspace, "dist/@tail-f/", pkg.name),
+    join(pkg.path, "dist"),
     ...getProjects(true).flatMap(({ path }) => [join(path, pkg.name)]),
   ];
 
@@ -61,17 +61,12 @@ export const getDistBundles = async (variables = {}, subPackages = {}) => {
                   main: "dist/index.js",
                   module: "dist/index.mjs",
                   types: "dist/index.d.ts",
+                  private: true,
                 };
               }
+
               delete pkg["devDependencies"];
               delete pkg["scripts"];
-
-              pkg.version = process.env.VERSION;
-              for (const name in pkg.dependencies) {
-                if (pkg.dependencies[name] === "workspace:*") {
-                  pkg.dependencies[name] = process.env.VERSION;
-                }
-              }
 
               return sortPackageJson(addCommonPackageData(pkg));
             },

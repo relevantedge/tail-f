@@ -6,7 +6,7 @@ import { env, getProjects } from "./shared.mjs";
 const pkg = await env();
 
 const targets = [
-  [join(pkg.workspace, "dist/@tail-f/", pkg.name, "schema"), true],
+  [join(pkg.path, "dist", "schema"), true],
   ...getProjects(false).map(({ dataPath }) => [
     join(dataPath, "schema.json"),
     false,
